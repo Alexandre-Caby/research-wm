@@ -1,0 +1,8 @@
+requests==2.34.2
+beautifulsoup4==4.15.0
+pandas==3.0.5
+sentence-transformers==5.6.0
+torch==2.13.0
+pymupdf==1.28.0
+html2text==2025.4.15
+lancedb==0.34.0
