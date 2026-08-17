@@ -34,8 +34,12 @@ def run_embed(
     purge_chunks_json: bool = True, max_chunks_per_batch: int = MAX_CHUNKS_PER_BATCH,
 ) -> None:
     if text_encoder is None:
-        from core.encoders import TextEncoder
-        text_encoder = TextEncoder()
+        if os.environ.get("EMBED_BACKEND") == "ollama":
+            from core.encoders import OllamaTextEncoder
+            text_encoder = OllamaTextEncoder()
+        else:
+            from core.encoders import TextEncoder
+            text_encoder = TextEncoder()
 
     conn = R.connect(config.DB_PATH)
     entities = _pending_entities(conn)
